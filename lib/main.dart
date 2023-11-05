@@ -1,31 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:testing/bottomNavbar/bottomNavBar.dart';
+import 'package:testing/routes/app_route_config.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('spm+'),
-          centerTitle: true,
-        ),
-        body: const Center(
-          child: Text('Home',
-          style: TextStyle(fontSize: 60),
-          ),
-        ),
-        bottomNavigationBar: const MenuBottom(),
-      ),
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routeInformationParser: MyAppRouter().router.routeInformationParser,
+      routerDelegate: MyAppRouter().router.routerDelegate,
     );
   }
 }

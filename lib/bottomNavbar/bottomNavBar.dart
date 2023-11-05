@@ -16,6 +16,10 @@ class _MenuBottomState extends State<MenuBottom> {
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.blue,
         selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white70,
+        iconSize: 24,
+        showUnselectedLabels: false,
+
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index,),
         items: const [
