@@ -12,18 +12,14 @@ class Analysis extends StatefulWidget {
 class _MyAppState extends State<Analysis> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('spm+'),
-          centerTitle: true,
-        ),
+    return  Scaffold(
+
         body: const Center(
           child: Text('Analysis',
             style: TextStyle(fontSize: 60),
           ),
         ),
-      ),
+
     );
   }
 }

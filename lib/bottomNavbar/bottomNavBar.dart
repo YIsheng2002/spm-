@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:testing/screens/analysis.dart';
+import 'package:testing/screens/home.dart';
+import 'package:testing/screens/subject.dart';
 
 class MenuBottom extends StatefulWidget {
   const MenuBottom({super.key});
@@ -10,40 +13,41 @@ class MenuBottom extends StatefulWidget {
 class _MenuBottomState extends State<MenuBottom> {
   int currentIndex = 0;
 
+  PageController _pageController = PageController();
+  List<Widget> _screen = [Home(),Analysis(),Subject()];
+
+
+
+
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.blue,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white70,
-        iconSize: 24,
-        showUnselectedLabels: false,
+    return Scaffold(
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        indicatorColor: Colors.amber[800],
+        selectedIndex: currentIndex,
+        destinations: const <Widget>[
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: 'Home'
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.business),
+            label: 'Business',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.school),
+            icon: Icon(Icons.school_outlined),
+            label: 'School',
+          ),
+        ],
+      ),
 
-        currentIndex: currentIndex,
-        onTap: (index) => setState(() => currentIndex = index,),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled),
-            label: 'Home',
-            backgroundColor: Colors.blue,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.auto_graph),
-            label: 'Analytics',
-            backgroundColor: Colors.blue,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.forum),
-            label: 'Forum',
-            backgroundColor: Colors.blue,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle_rounded),
-            label: 'Account',
-            backgroundColor: Colors.blue,
-          ),
-        ]
     );
   }
 }

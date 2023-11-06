@@ -11,15 +11,13 @@ class Subject extends StatefulWidget {
 class _MyAppState extends State<Subject> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return  Scaffold(
         body: const Center(
           child: Text('Subject',
             style: TextStyle(fontSize: 60),
           ),
         ),
-        bottomNavigationBar: const MenuBottom(),
-      ),
+
     );
   }
 }
