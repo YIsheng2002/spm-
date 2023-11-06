@@ -46,22 +46,27 @@ class _MyAppState extends State<MyApp> {
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: _onItemTapped,
-        indicatorColor: Colors.amber[800],
+        indicatorColor: Colors.lightBlue,
         selectedIndex: _selectedIndex,
         destinations: const <Widget>[
           NavigationDestination(
-            selectedIcon: Icon(Icons.home),
+            selectedIcon: Icon(Icons.home_filled),
             icon: Icon(Icons.home_outlined),
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.auto_graph),
+            label: 'Analytics',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.school),
-            icon: Icon(Icons.school_outlined),
-            label: 'School',
+
+            icon: Icon(Icons.forum),
+            label: 'Forum',
+          ),
+          NavigationDestination(
+
+            icon: Icon(Icons.account_circle_rounded),
+            label: 'Account',
           ),
         ],
       ),
