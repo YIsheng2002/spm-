@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MenuBottom extends StatefulWidget {
   const MenuBottom({super.key});
@@ -21,7 +22,13 @@ class _MenuBottomState extends State<MenuBottom> {
         showUnselectedLabels: false,
 
         currentIndex: currentIndex,
-        onTap: (index) => setState(() => currentIndex = index,),
+        //onTap: (index) => setState(() => currentIndex = index),
+        onTap: (int index)
+        {
+          setState(() {
+            currentIndex = index;
+          });
+        },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),
