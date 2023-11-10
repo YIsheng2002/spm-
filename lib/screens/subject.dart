@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testing/screens/question.dart';
 
 class Subject extends StatefulWidget {
   const Subject({super.key});
@@ -22,9 +23,20 @@ class _MyAppState extends State<Subject> {
                 children: [
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                    /*
                     child: Icon(
                       Icons.chevron_left,
                       size: 24,
+                    ),
+                     */
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.chevron_left,
+                        size: 50,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
                   ),
                 ],
@@ -50,59 +62,65 @@ class _MyAppState extends State<Subject> {
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             children: [
-                              Container(
-                                width: 40,
-                                height: 60,
-                                decoration: BoxDecoration(
-                                  color: Colors.greenAccent,
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsetsDirectional.fromSTEB(25, 0, 0, 0),
-                                            child: Container(
-                                              width: 120,
-                                              height: 120,
-                                              clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: Image.network(
-                                                'https://picsum.photos/seed/844/600',
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsetsDirectional.fromSTEB(45, 0, 0, 0),
-                                            child: Text(
-                                              'Hello World',
-                                              style: TextStyle(
-                                                fontFamily: 'Plus Jakarta Sans',
-                                                fontSize: 14,
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionPage()));
+                                },
+                                child: new Container(
+                                  width: 40,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Colors.greenAccent,
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(25, 0, 0, 0),
+                                              child: Container(
+                                                width: 120,
+                                                height: 120,
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Image.network(
+                                                  'https://picsum.photos/seed/844/600',
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(45, 0, 0, 0),
+                                              child: Text(
+                                                'Hello World',
+                                                style: TextStyle(
+                                                  fontFamily: 'Plus Jakarta Sans',
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
+                              
                               Container(
                                 width: 40,
                                 height: 60,
