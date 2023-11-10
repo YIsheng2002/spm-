@@ -263,7 +263,7 @@ class _MyAppState extends State<Analysis> {
     const style = TextStyle(
       color: Colors.black,
       fontWeight: FontWeight.bold,
-      fontSize: 6,
+      fontSize: 14,
     );
     Widget text;
 
@@ -276,36 +276,37 @@ class _MyAppState extends State<Analysis> {
     } else {
       int count = value.toInt();
       String chapterName = "";
-      chapterName = chapterResults[count].id;
-      text = Text(chapterName, style: style,);
+      //  chapterName = chapterResults[count].id;
+      // text = Text(chapterName, style: style,);
 
-    }
-    //switch (value.toInt()) {
-      // case 0:
-      //   text = const Text('M', style: style);
-      //   break;
-      // case 1:
-      //   text = const Text('T', style: style);
-      //   break;
-      // case 2:
-      //   text = const Text('W', style: style);
-      //   break;
-      // case 3:
-      //   text = const Text('T', style: style);
-      //   break;
-      // case 4:
-      //   text = const Text('F', style: style);
-      //   break;
-      // case 5:
-      //   text = const Text('S', style: style);
-      //   break;
+
+      switch (value.toInt()) {
+        case 0:
+          text = const Text('F4C1', style: style);
+          break;
+        case 1:
+          text = const Text('F4C2', style: style);
+          break;
+        case 2:
+          text = const Text('F4C3', style: style);
+          break;
+        case 3:
+          text = const Text('F4C5', style: style);
+          break;
+        case 4:
+          text = const Text('F5C6', style: style);
+          break;
+        case 5:
+          text = const Text('F5C8', style: style);
+          break;
       // case 6:
       //   text = const Text('S', style: style);
       //   break;
-      // default:
-      //   text = const Text('', style: style);
-      //   break;
-
+        default:
+          text = const Text('', style: style);
+          break;
+      }
+    }
     return SideTitleWidget(
       axisSide: meta.axisSide,
       space: 16,
