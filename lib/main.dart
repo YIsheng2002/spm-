@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:testing/routes/app_route_config.dart';
 import 'package:testing/screens/analysis.dart';
 import 'package:testing/screens/home.dart';
 import 'package:testing/screens/subject.dart';
@@ -35,10 +34,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      /*appBar: AppBar(
         title: const Text('spm+'),
         centerTitle: true,
-      ),
+      ),*/
       body: PageView(
         controller: _pageController,
         children: _screen,
