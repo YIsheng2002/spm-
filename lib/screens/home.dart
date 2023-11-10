@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:testing/bottomNavbar/bottomNavBar.dart';
+import 'package:testing/screens/subject.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -18,7 +19,7 @@ class _MyAppState extends State<Home> {
         body: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            /**Align(
+            Align(
               alignment: AlignmentDirectional(0.00, 0.00),
               child:
               Padding(
@@ -105,7 +106,7 @@ class _MyAppState extends State<Home> {
                   ],
                 ),
               ),
-            ),**/
+            ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
               child: Row(
@@ -130,19 +131,33 @@ class _MyAppState extends State<Home> {
                           children: [
                             Column(
                               mainAxisSize: MainAxisSize.max,
+
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 10, 0, 0),
+                                      0, 0, 0, 0),
+
+                                  /*
                                   child: Icon(
                                     Icons.edit_note,
                                     color: Colors.blue,
                                     size: 30,
+                                   */
+
+                                  child: IconButton(
+                                    icon: const Icon(
+                                        Icons.edit_note,
+                                        color: Colors.blue,
+                                        size: 40,
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Subject()));
+                                    },
                                   ),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 10, 0, 0),
+                                      0, 2, 0, 0),
                                   child: Text(
                                     'Exams',
                                     style: TextStyle(
@@ -153,6 +168,7 @@ class _MyAppState extends State<Home> {
                                   ),
                                 ),
                               ],
+
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
