@@ -35,109 +35,114 @@ class _MyAppState extends State<Analysis> {
 
   Future<void> fetchUserResult() async {
     print("asdasdasd");
-    try{
-    final userResultRef = db.collection("UserResult");
-    final querySnapshot = await userResultRef.where("userId", isEqualTo: "UID1")
-        .get();
+    try {
+      final userResultRef = db.collection("UserResult");
+      final querySnapshot = await userResultRef
+          .where("userId", isEqualTo: "UID1")
+          .get();
 
-    for (var userResultDoc in querySnapshot.docs) {
-      final userResultData = userResultDoc.data() as Map<String, dynamic>;
-      final userResult = UserResult(id: userResultDoc.id,
+      userResults.clear(); // Clear the userResults list
+      chapterResults.clear(); // Clear the chapterResults list
+
+      for (var userResultDoc in querySnapshot.docs) {
+        final userResultData = userResultDoc.data() as Map<String, dynamic>;
+        final userResult = UserResult(
+          id: userResultDoc.id,
           userId: userResultData["userId"],
           examId: userResultData["examId"],
           timeStamp: userResultData["timeStamp"],
-          totalResult: userResultData["totalResult"]);
-      userResults.add(userResult);
-      print(userResult);
+          totalResult: userResultData["totalResult"],
+        );
+        userResults.add(userResult);
+        print(userResult);
 
-      final chaptersRef = userResultDoc.reference.collection("ChapterResult");
-      final chapterQuerySnapshot = await chaptersRef.get();
+        final chaptersRef =
+        userResultDoc.reference.collection("ChapterResult");
+        final chapterQuerySnapshot = await chaptersRef.get();
 
-      for (var chapterDoc in chapterQuerySnapshot.docs) {
-        final chapterData = chapterDoc.data() as Map<String, dynamic>;
-        final chapterResult = ChapterResult(id: chapterDoc.id,
+        for (var chapterDoc in chapterQuerySnapshot.docs) {
+          final chapterData = chapterDoc.data() as Map<String, dynamic>;
+          final chapterResult = ChapterResult(
+            id: chapterDoc.id,
             correctAnswer: chapterData["correctAnswer"],
-            incorrectAnswer: chapterData["incorrectAnswer"]);
-        chapterResults.add(chapterResult);
-       userResultLenght= chapterResults.length!;
+            incorrectAnswer: chapterData["incorrectAnswer"],
+          );
+          chapterResults.add(chapterResult);
+          userResultLenght = chapterResults.length!;
+        }
       }
-    }
-  }catch (e) {
+    } catch (e) {
       print("Error fetching data: $e");
     }
-
-    // final docRef = db.collection("UserResult").where("userId", isEqualTo: "UID1");
-    // docRef.get().then(
-    //       (querySnapshot) {
-    //         print("Successfully completed");
-    //         for (var docSnapshot in querySnapshot.docs) {
-    //           print('${docSnapshot.id} => ${docSnapshot.data()}');
-    //         }
-    //     // ...
-    //
-    //   } ,
-    //   onError: (e) => print("Error getting document: $e"),
-    //);
-
-
-
   }
 
 @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    fetchUserResult();
+
+
   }
 
   @override
   Widget build(BuildContext context) {
-    return  AspectRatio(aspectRatio: 1,
-      child: Stack(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+    return FutureBuilder(
+      future: fetchUserResult(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return AspectRatio(
+            aspectRatio: 1,
+            child: Stack(
               children: <Widget>[
-                const Text(
-                  'Analysis for each chapter',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      const Text(
+                        'Analysis for each chapter',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      Text(
+                        'Total Correct Question',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 38,
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: BarChart(
+                            mainBarData(),
+                            swapAnimationDuration: animDuration,
+
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  'Total Correct Question',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  height: 38,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: BarChart(
-                      mainBarData(),
-                      swapAnimationDuration: animDuration,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 12,
                 ),
               ],
             ),
-          ),
-
-        ],
-      ),
+          );
+        } else {
+          // Provide a loading indicator or placeholder here
+          return Center(child: CircularProgressIndicator());
+        }
+      },
     );
   }
   BarChartGroupData makeGroupData(
