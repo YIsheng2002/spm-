@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "741539780975",
+    "project_id": "spmplus-96dab",
+    "storage_bucket": "spmplus-96dab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741539780975:android:ea7e72a22db759c6ee709a",
+        "android_client_info": {
+          "package_name": "com.example.testing"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBb1KFwgSjFS7tMU7IMf9r6gNrmVoVErhk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
